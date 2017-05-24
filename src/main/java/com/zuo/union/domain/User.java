@@ -29,6 +29,8 @@ public class User implements Serializable{
 	private String userCommunity;
 	/*用户注册时间*/
 	private Date userDate;
+	/*用户积分*/
+	private int userPoint;
 	/*类型id,关联types类：many-to-one,用于区分用户的身份*/
 	private Long typeId;
 	
@@ -86,6 +88,12 @@ public class User implements Serializable{
 	}
 	public void setType_Id(Long typeId) {
 		this.typeId = typeId;
+	}
+	public int getUserPoint() {
+		return userPoint;
+	}
+	public void setUserPoint(int userPoint) {
+		this.userPoint = userPoint;
 	}
 	
 	
