@@ -35,58 +35,58 @@ public class User implements Serializable{
 	private Long typeId;
 	
 	
-	public Long getUser_Id() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUser_Id(Long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public String getUser_Name() {
+	public String getUserName() {
 		return userName;
 	}
-	public void setUser_Name(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUser_Pass() {
+	public String getUserPass() {
 		return userPass;
 	}
-	public void setUser_Pass(String userPass) {
+	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
-	public String getUser_Nickname() {
+	public String getUserNickname() {
 		return userNickname;
 	}
-	public void setUser_Nickname(String userNickname) {
+	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	public String getUser_Tel() {
+	public String getUserTel() {
 		return userTel;
 	}
-	public void setUser_Tel(String userTel) {
+	public void setUserTel(String userTel) {
 		this.userTel = userTel;
 	}
-	public String getUser_Email() {
+	public String getUserEmail() {
 		return userEmail;
 	}
-	public void setUser_Email(String userEmail) {
+	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getUser_Community() {
+	public String getUserCommunity() {
 		return userCommunity;
 	}
-	public void setUser_Community(String userCommunity) {
+	public void setUserCommunity(String userCommunity) {
 		this.userCommunity = userCommunity;
 	}
-	public Date getUser_Date() {
+	public Date getUserDate() {
 		return userDate;
 	}
-	public void setUser_Date(Date userDate) {
+	public void setUserDate(Date userDate) {
 		this.userDate = userDate;
 	}
-	public Long getType_Id() {
+	public Long getTypeId() {
 		return typeId;
 	}
-	public void setType_Id(Long typeId) {
+	public void setTypeId(Long typeId) {
 		this.typeId = typeId;
 	}
 	public int getUserPoint() {
