@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.zuo.union.domain.User;
 
-@Repository("userDao")
+@Repository("userMapper")
 public interface UserMapper {
 
 	/**
@@ -15,5 +15,14 @@ public interface UserMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public User login(Map<String, Object> loginParams) throws Exception;
+	public User login(Map<String, String> loginParams) throws Exception;
+	
+	
+	/**
+	 * 用户注册
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int register(User user) throws Exception;
 }
