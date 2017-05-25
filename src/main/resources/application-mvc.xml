@@ -19,12 +19,7 @@
 	<!-- ViewResolver视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 配置视图路径的前缀 -->
-<<<<<<< HEAD
 		<property name="prefix" value="/WEB-INF/"/>
-=======
-		<property name="prefix" value="/WEB-INF/user/"/>
->>>>>>> branch 'master' of https://github.com/zuoTeam/union
-		
 		<!-- 配置视图路径的后缀 -->
 		<property name="suffix" value=".jsp"/>
 	</bean>
