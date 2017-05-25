@@ -20,15 +20,11 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 	
 	@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
-	@Override
 	public User login(String userName, String userPass) throws Exception {
-		Map<String, Object> loginParams = new HashMap<>();
+		Map<String, String> loginParams = new HashMap<String, String>();
 		loginParams.put("userName", userName);
 		loginParams.put("userPass", userPass);
 		return userMapper.login(loginParams);
 	}
-	
-	
-	
 
 }

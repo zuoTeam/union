@@ -11,10 +11,19 @@
 </head>
 <body>
 	<div id="title">
-		<label>新闻关键字:</label><input type="text" name="keyWord" placeholder="搜索"/>
+		<form action="">
+			<label>新闻关键字:</label>
+			<input type="text" name="keyWord" placeholder="搜索"/>
+			<input type="submit" value="搜索"/>
+		</form>
 	</div>
 	<div id="guide">
-		<ul></ul>
+		<font color="red">${errorMessage }</font>
+		<ul>
+			<c:forEach items="${allNewsType}" var="type">
+				<li><a href="#">${type.typeName }</a></li>
+			</c:forEach>
+		</ul>
 	</div>
 	<div id="body">
 		<div id="border"></div>

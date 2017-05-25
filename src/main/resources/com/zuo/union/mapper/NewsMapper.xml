@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zuo.union.mapper.NewsMapper">
+	
+	<!-- 获取所有社区新闻的类别 -->
+	<select id="getAllNewsType" resultMap="AllNewsTypeResultMap">
+		select type_id,type_name from types t inner join functions f on t.func_id = f.func_id where f.func_id = 2
+	</select>
+	<!-- 字段映射 -->
+	<resultMap type="Type" id="AllNewsTypeResultMap">
+		<id property="typeId" column="type_id"/>
+		<result property="typeName" column="type_name"/>
+	</resultMap>
+	
+	<!-- 获取全部新闻 -->
+	<select id="getAllNews" resultMap="AllNewsResultMap">
+		SELECT
+			news_id,
+			news_title,
+			news_desc,
+			news_date,
+			user_nickname,
+			type_name
+		FROM
+			news
+		LEFT JOIN USER ON news_author = user_id
+		LEFT JOIN types ON news_type = types.type_id
+	</select>
+	<resultMap type="News" id="AllNewsResultMap">
+		<id property="newsId" column="news_id"/>
+		<result property="newsTitle" column="news_title"/>
+		<result property="newsDesc" column="news_desc"/>
+		<result property="newsDate" column="news_date"/>
+		
+		<association property="publisher" javaType="User">
+			<result property="userNickname" column="user_nickname"/>
+		</association>
+		
+		<association property="type" javaType="Type">
+			<result property="typeName" column="type_name"/>
+		</association>
+	</resultMap>
+	
+	<!-- 根据类型获取相应新闻 -->
+	<select id="getNewsByType" parameterMap="byType" resultMap="AllNewsResultMap">
+		SELECT
+			news_id,
+			news_title,
+			news_desc,
+			news_date,
+			user_nickname,
+			type_name
+		FROM
+			news
+		LEFT JOIN USER ON news_author = user_id
+		LEFT JOIN types ON news_type = types.type_id
+		where
+			types.type_id = #{type.typeId}
+		limit #{pageBean.beginIndex}, #{pageBean.pageSize}
+	</select>
+	<parameterMap type="java.util.Map" id="byType">
+		<parameter property="type" javaType="Type"/>
+		<parameter property="pageBean" javaType="PageBean"/>
+	</parameterMap>
+	
+</mapper>
