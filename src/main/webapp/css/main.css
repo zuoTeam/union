@@ -1,0 +1,163 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#basicDiv{
+	width: 1167px;
+	height:650px;
+	border: 1px solid;
+	margin:30px 0 0 100px;
+}
+
+#activity{
+	width: 250px;
+	height:500px;
+	border: 1px solid;
+	float:left;
+}
+
+#commActivity{
+	width: 250px;
+	height:230px;
+	border: 1px solid orange;
+	margin-top:10px;
+}
+
+#travel{
+	width: 250px;
+	height:230px;
+	border: 1px solid orange;
+	margin-top:10px;
+}
+
+h3,h4{
+	background-color: #E54724;
+	color:white;
+	text-align: center;
+}
+
+.actImg{
+	width:230px;
+	height: 180px;
+}
+
+.actContent{
+	margin-left:10px;
+}
+
+.actName{
+	display: block;
+	text-align: center;
+}
+
+#communityInfo{
+	width: 600px;
+	height:500px;
+	border: 1px solid;
+	float:left;
+	margin-left:30px; 
+}
+
+#news{
+	width: 600px;
+	height:300px;
+	border: 1px solid orange;
+	margin-top:5px;
+}
+
+.newsImg{
+	width: 600px;
+	height:270px;
+}
+
+.rentImg{
+	width: 600px;
+	height:160px;
+}
+
+#rent{
+	width: 600px;
+	height:190px;
+	border: 1px solid orange;
+	margin-top:5px;
+}
+
+#shopping{
+	width: 250px;
+	height:500px;
+	border: 1px solid;
+	float:left;
+	margin-left:30px;
+}
+
+#shopping div{
+	width: 250px;
+	height:120px;
+	border: 1px solid orange;
+	margin-top:5px;
+}
+
+ol li{
+	text-align: center;
+	line-height: 30px;
+}
+
+li a,#unionLife div a{
+	color: #666666;
+}
+
+li a:hover,#unionLife div a:hover{
+	color: #E3100C;
+	text-decoration: underline;
+}
+
+#unionLife{
+	width: 1160px;
+	height:100px;
+	border: 1px solid;
+	float:left;
+	margin-top:30px;
+}
+
+#unionLife div{
+	width: 220px;
+	height:90px;
+	border: 1px solid #ffff80;
+	border-radius:50%;
+	float:left;
+	margin:5px 0 0 7px;
+}
+
+#unionLife div:hover{
+	border-color: #B11E31;
+}
+
+#notice{
+	width: 150px;
+	height:300px;
+	border: 1px solid red;
+	position: fixed;
+	margin: -600px 0 0 1280px;
+}
+
+#unionLife div p,#notice p{
+	text-align: center;
+	line-height: 40px;
+	font-size:18px;
+}
+
+#unionLife div a,#notice a{
+	display: block;
+	text-align: center;
+}
+
+#unionLife div a img{
+	width: 130px;
+	height:40px;
+}
+
+
+
