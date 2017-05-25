@@ -291,12 +291,16 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<!-- <version>7.1.0.RC1</version> -->
 				<version>8.1.15.v20140411</version>
+				
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 					<webAppConfig>
 						<contextPath>/</contextPath>
+						<defaultsDescriptor>src/test/resources/webdefault.xml</defaultsDescriptor>
 					</webAppConfig>
-				</configuration>
+					
+                 </configuration>
+				
 			</plugin>
 
 			<plugin>
