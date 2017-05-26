@@ -37,9 +37,9 @@ public class NewsTest {
 		List<News> allNews = newsMapper.getAllNews();
 		for (News news : allNews) {
 			System.out.println("==="+news.getNewsTitle());
-			System.out.println(news.getType().getTypeName());
+//			System.out.println(news.getType().getTypeName());
 			System.out.println(news.getPublisher().getUserNickname());
-			System.out.println(news.getNewsDesc());
+//			System.out.println(news.getNewsDesc());
 		}
 	}
 	
@@ -48,10 +48,10 @@ public class NewsTest {
 		Type type = new Type();
 		type.setTypeId(5);
 		
-		PageBean<News> pageBean = new PageBean<News>();
+		PageBean<News> pageBean = new PageBean<>();
 		pageBean.setCurrentPage(1);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("type", type);
 		map.put("pageBean", pageBean);
 		

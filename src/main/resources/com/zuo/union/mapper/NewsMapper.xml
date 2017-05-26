@@ -25,6 +25,8 @@
 			news
 		LEFT JOIN USER ON news_author = user_id
 		LEFT JOIN types ON news_type = types.type_id
+		order by
+			news_date desc
 	</select>
 	<resultMap type="News" id="AllNewsResultMap">
 		<id property="newsId" column="news_id"/>
@@ -56,6 +58,8 @@
 		LEFT JOIN types ON news_type = types.type_id
 		where
 			types.type_id = #{type.typeId}
+		order by
+			news_date desc
 		limit #{pageBean.beginIndex}, #{pageBean.pageSize}
 	</select>
 	<parameterMap type="java.util.Map" id="byType">
