@@ -67,4 +67,51 @@
 		<parameter property="pageBean" javaType="PageBean"/>
 	</parameterMap>
 	
+	<select id="getNews" parameterMap="byQbc" resultMap="AllNewsResultMap">
+		SELECT
+			news_id,
+			news_title,
+			news_desc,
+			news_date,
+			user_nickname,
+			type_name
+		FROM
+			news
+		LEFT JOIN USER ON news_author = user_id
+		LEFT JOIN types ON news_type = types.type_id
+		<include refid="newsQbc"/>
+		order by
+			news_date desc
+		limit #{pageBean.beginIndex}, #{pageBean.pageSize}
+	</select>
+	<parameterMap type="java.util.Map" id="byQbc">
+		<parameter property="type" javaType="Type"/>
+		<parameter property="keyWord" javaType="string"/>
+		<parameter property="pageBean" javaType="PageBean"/>
+	</parameterMap>
+	<sql id="newsQbc">
+		<where>
+			<if test="keyWord!=null">
+				and news_title like concat('%',#{keyWord},'%')
+			</if>
+			<if test="type!=null">
+				and news_type = #{type.typeId}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getNewsRowCount" parameterMap="byConditions" resultType="int">
+		SELECT
+			count(news_id)
+		FROM
+			news
+		LEFT JOIN USER ON news_author = user_id
+		LEFT JOIN types ON news_type = types.type_id
+		<include refid="newsQbc"/>
+	</select>
+	<parameterMap type="java.util.Map" id="byConditions">
+		<parameter property="type" javaType="Type"/>
+		<parameter property="keyWord" javaType="string"/>
+	</parameterMap>
+	
 </mapper>

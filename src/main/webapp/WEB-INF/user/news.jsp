@@ -12,9 +12,9 @@
 </head>
 <body>
 	<div id="title">
-		<form action="">
+		<form action="goNews">
 			<label>新闻关键字:</label>
-			<input type="text" name="keyWord" placeholder="搜索"/>
+			<input type="text" name="keyWord" placeholder="搜索" value=""/>
 			<input type="submit" value="搜索"/>
 		</form>
 	</div>
@@ -30,8 +30,15 @@
 		<div id="border"></div>
 		<div id="newsWindow">
 			<ul>
-				<c:forEach items="${allNews }" var="news">
+				<c:forEach items="${News }" var="news">
 					<li><a href="">${news.newsTitle }</a><fmt:formatDate value="${news.newsDate }" type="both"/></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div id="pages">
+			<ul>
+				<c:forEach var="page" begin="1" end="${totalPage }">
+					<li>${page }</li>
 				</c:forEach>
 			</ul>
 		</div>

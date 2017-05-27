@@ -40,5 +40,21 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	List<News> getNewsByKeyWord(String keyWord, PageBean<News> pageBean) throws Exception;
+	
+	/**
+	 * 使用QBC动态查询对应的新闻，包括关键字，类型
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	List<News> getNews(Map<String, Object> map) throws Exception;
+	
+	/**
+	 * 使用QBC动态查询对应的新闻的条目数，包括关键字，类型
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	int getNewsRowCount(Map<String, Object> map) throws Exception;
 
 }
