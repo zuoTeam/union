@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zuo.union.mapper.TravelMapper">
+
+	<!-- 获取最新发布的结伴出行的3条信息 -->
+	<select id="getTopThreeTravels" resultType="Travel">
+		select travel_id
+		travelId,travel_title travelTitle,travel_time travelTime,
+		travel_place
+		travelPlace,travel_content travelContent,travel_publish_time
+		travelPublishTime
+		from travel order by travelPublishTime DESC limit 3
+	</select>
+	
+	<!-- 通过travelId查找结伴出行的出行信息 -->
+	<select id="getTravelById" parameterType="int" resultMap="travelMap">
+		SELECT travel_id, travel_title, travel_time, travel_place, travel_content,
+		travel_publish_time, travel_user_id, user_nickname, user_tel,image_id, image_path
+		FROM travel
+		LEFT JOIN `user` ON travel_user_id = user_id
+		LEFT JOIN images on travel_func_id = image_func_id and travel_id = func_item_id
+		WHERE travel_id = #{travelId}
+	</select>
+	
+	<!-- 获取所有结伴出行信息 -->
+	<select id="getAllTravels" resultMap="travelMap">
+		SELECT travel_id, travel_title, travel_time, travel_place, travel_content,
+		travel_publish_time, travel_user_id, user_nickname, user_tel,image_id, image_path
+		FROM travel
+		LEFT JOIN `user` ON travel_user_id = user_id
+		LEFT JOIN images on travel_func_id = image_func_id and travel_id = func_item_id
+		order by travel_publish_time DESC
+	</select>
+	
+	<!-- 获取分页条件查询结伴出行信息 -->
+	<select id="getTravelsByPage" resultMap="travelMap" parameterType="PageBean">
+		SELECT travel_id, travel_title, travel_time, travel_place, travel_content,
+		travel_publish_time, travel_user_id, user_nickname, user_tel,image_id, image_path
+		FROM travel
+		LEFT JOIN `user` ON travel_user_id = user_id
+		LEFT JOIN images on travel_func_id = image_func_id and travel_id = func_item_id
+		order by travel_publish_time DESC limit #{beginIndex},#{pageSize}
+	</select>
+	
+	<!-- 结伴出行查询结果映射 -->
+	<resultMap type="Travel" id="travelMap">
+		<id property="travelId" column="travel_id"/>
+		<result property="travelTitle" column="travel_title"/>
+		<result property="travelTime" column="travel_time"/>
+		<result property="travelPlace" column="travel_place"/>
+		<result property="travelContent" column="travel_content"/>
+		<result property="travelPublishTime" column="travel_publish_time"/>
+		
+		<!-- 当前出行记录由哪个用户发布 -->
+		<association property="user" column="travel_user_id" javaType="User">
+			<id property="userId" column="travel_user_id"/>
+			<result property="userNickname" column="user_nickname"/>
+			<result property="userTel" column="user_tel"/>
+		</association>
+		
+		<!-- 当前记录包含的图片信息 -->
+		<collection property="images" javaType="arraylist" ofType ="Image">
+			<id property="imageId" column="image_id"/>
+			<result property="imagePath" column="image_path"/>
+		</collection>
+	</resultMap>
+</mapper>
