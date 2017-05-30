@@ -1,6 +1,7 @@
 package com.zuo.union.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -43,4 +44,28 @@ public interface TravelMapper {
 	 * @throws Exception
 	 */
 	public List<Travel> getTravelsByPage(PageBean<Travel> pageBean) throws Exception;
+	
+	/**
+	 * 用户结伴出行
+	 * @param attendTravelMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int toBePartner(Map<String, Object> attendTravelMap) throws Exception;
+	
+	/**
+	 * 查询用户是否参与某项出行
+	 * @param attendTravelMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int checkIsAttend(Map<String, Object> attendTravelMap) throws Exception;
+	
+	/**
+	 * 用户发布结伴出行
+	 * @param travel
+	 * @throws Exception
+	 */
+	public int issueTravel(Travel travel) throws Exception;
+
 }

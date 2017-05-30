@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zuo.union.mapper.ImageMapper">
+
+	<!-- 用户发布结伴出行是上传的照片路径保存到images表中 -->
+	<insert id="uploadImgs" parameterMap="imageMap">
+		insert into images(image_path,image_func_id,func_item_id) values(#{imagePath},#{funcId},#{travelId})
+	</insert>
+	
+	<parameterMap type="java.util.Map" id="imageMap">
+		<parameter property="imagePath" javaType="string"/>
+		<parameter property="funcId" javaType="int"/>
+		<parameter property="travelId" javaType="int"/>
+	</parameterMap>
+</mapper>

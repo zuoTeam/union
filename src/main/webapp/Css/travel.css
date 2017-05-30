@@ -61,7 +61,7 @@ h4{
 	margin:-80px 100px 0 0;
 }
 
-input{
+#inputDiv input,.horizonCenter input{
 	width:150px;
 	height:30px;
 	background-color: #E54724;
@@ -70,7 +70,7 @@ input{
 	font-size:20px;
 }
 
-input:hover{
+#inputDiv input:hover,.horizonCenter input:hover{
 	cursor: pointer;
 }
 
@@ -90,3 +90,65 @@ th,td{
 .even{
 	background-color: #e8f7a2;
 }
+
+/* 隐藏区域：发布出行模块中的标签样式 */
+#issueTravelDiv{
+	background-image: url("../images/travelImg/issueTravelBack.png");
+	position: relative;
+	width: 1000px;
+	height:600px;
+	display: none;
+}
+#issueTravelDiv form{
+	position:absolute;
+	margin:10% 0 0 20%;
+}
+
+/*平面区域样式*/
+fieldset{
+	width:600px;
+	border: 5px solid #ffff80;
+	color: white;
+	font-size: 18px;
+}
+
+#issueTravelDiv input{
+	border:1px solid thin orange;
+}
+
+textarea{
+	height:100px;
+}
+
+/*表单中label中的文字样式*/
+.slabel{
+	width:150px;
+	display:inline-block;
+	line-height:1.8;
+	text-align:right;
+}
+
+.slabel +input{
+	width:200px;
+	height:30px;
+}
+
+.horizonCenter{
+	text-align:center;
+}
+
+.verticalCenter{
+	vertical-align:middle;
+}
+
+/*校验出错时提示信息的样式，不是标签的样式*/
+input.error,textarea.error{
+	border:1px solid #cd0a0a;
+}
+/*validate框架的报错会用label封装提示信息，所以还应定义label的出错样式*/
+label.error{
+	color:#cd0a0a;
+	margin-left:5px;
+	font-size: 12px;
+}
+

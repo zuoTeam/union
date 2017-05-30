@@ -40,4 +40,31 @@ public interface TravelService {
 	 * @throws Exception
 	 */
 	public List<Travel> getTravelsByPage(PageBean<Travel> pageBean) throws Exception;
+	
+	/**
+	 * 用户结伴出行
+	 * @param travelId
+	 * @param userId 参与结伴用户ID
+	 * @return
+	 * @throws Exception
+	 */
+	public int toBePartner(Integer travelId,Long userId) throws Exception;
+	
+	/**
+	 * 查询用户是否参与某项出行
+	 * @param travelId
+	 * @param userId 参与结伴用户ID
+	 * @return
+	 * @throws Exception
+	 */
+	public int checkIsAttend(Integer travelId,Long userId) throws Exception;
+	
+	/**
+	 * 用户发布结伴出行
+	 * @param travel
+	 * @param imagePaths
+	 * @return
+	 * @throws Exception
+	 */
+	public int issueTravelAndUploadImgs(Travel travel,List<String> imagePaths) throws Exception;
 }

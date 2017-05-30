@@ -64,4 +64,31 @@
 			<result property="imagePath" column="image_path"/>
 		</collection>
 	</resultMap>
+	
+	<!-- 查询用户是否参与某项出行 -->
+	<select id="checkIsAttend" parameterMap="attendTravelMap" resultType="int">
+		select count(attend_trav_id) from attendtravel where travel_id=#{travelId} and attend_user_id=#{userId}
+	</select>
+	
+	<!-- 用户参与结伴出行 -->
+	<insert id="toBePartner" parameterMap="attendTravelMap">
+		insert into attendtravel(travel_id,attend_user_id) values(#{travelId},#{userId})
+	</insert>
+	
+	<parameterMap type="java.util.Map" id="attendTravelMap">
+		<parameter property="travelId" javaType="int"/>
+		<parameter property="userId" javaType="long"/>
+	</parameterMap>
+	
+	<!-- 用户发布结伴出行 -->
+	<insert id="issueTravel" parameterType="Travel" useGeneratedKeys="true" keyProperty="travelId" keyColumn="travel_id">
+		insert into travel(travel_title,travel_time,travel_place,travel_content,travel_publish_time,travel_user_id)
+		values(#{travelTitle},#{travelTime},#{travelPlace},#{travelContent},now(),#{user.userId})
+	</insert>
+	
+	<!-- 用户发布结伴出行是上传的照片路径保存到images表中 -->
+	<insert id="uploadImgs" parameterType="Image">
+		insert into images(image_path,image_func_id,func_item_id) values(#{imagePath},#{func.funcId},#{object.travelId})
+	</insert>
+	
 </mapper>
