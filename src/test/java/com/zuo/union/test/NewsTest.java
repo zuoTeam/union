@@ -1,10 +1,7 @@
 package com.zuo.union.test;
 
-import static org.junit.Assert.*;
-
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +15,6 @@ import com.zuo.union.domain.News;
 import com.zuo.union.domain.PageBean;
 import com.zuo.union.domain.Type;
 import com.zuo.union.domain.User;
-import com.zuo.union.mapper.NewsMapper;
 import com.zuo.union.service.NewsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -113,14 +109,55 @@ public class NewsTest {
 		news.setNewsId(1);
 		
 		Comment<News> comment = new Comment<>();
+		comment.setE(news);
 		comment.setCommentContent("testtest");
 		comment.setFunction(functions);
 		comment.setUser(user);
 		
 		int addComment = newsServiceImpl.addComment(comment);
-//		System.out.println(addComment);
+		System.out.println(addComment);
 		
-		System.out.println(comment.getE());
+//		System.out.println(comment.getE());
+	}
+	
+	@Test
+	public void addNews() throws Exception {
+		User user = new User();
+		user.setUserId(1l);
+		
+		Type type = new Type();
+		type.setTypeId(3);
+		
+		Date date = new Date();
+		date.getTime();
+		
+		News news = new News();
+		news.setNewsTitle("你好呀");
+		news.setNewsDesc("我就问你好不好");
+		news.setNewsDate(date);
+		news.setPublisher(user);
+		news.setType(type);
+		
+		int addNews = newsServiceImpl.addNews(news);
+		System.out.println(addNews);
+	}
+	
+	@Test
+	public void deleteComment() throws Exception {
+		Comment<News> comment = new Comment<>();
+		comment.setCommentId(2);
+		
+		int deleteComment = newsServiceImpl.deleteComment(comment);
+		System.out.println(deleteComment);
+	}
+	
+	@Test
+	public void deleteNews() throws Exception {
+		News news = new News();
+		news.setNewsId(1);
+		
+		int deleteNews = newsServiceImpl.deleteNews(news);
+		System.out.println(deleteNews);
 	}
 
 }

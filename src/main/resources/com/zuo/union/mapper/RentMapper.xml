@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zuo.union.mapper.RentMapper">
+
+	<select id="getRentedHouse" parameterMap="rentParamMap" resultMap="houseResultMap">
+		SELECT
+			rent_id,
+			rent_title,
+			rent_desc,
+			rent_addr,
+			rent_date,
+			user_nickname,
+			type_name
+		FROM
+			rent
+		LEFT JOIN user ON user_id = rent_owner
+		LEFT JOIN types ON rent_type = types.type_id
+		<include refid="byQbc"/>
+	</select>
+	<sql id="byQbc">
+		<where>
+			<if test="keyWord!=null">
+				and rent_title like concat('%',#{keyWord},'%')
+			</if>
+			<if test="type!=null">
+				and rent_type = #{type.typeId}
+			</if>
+		</where>
+	</sql>
+	<parameterMap type="java.util.Map" id="rentParamMap">
+		<parameter property="type" javaType="Type"/>
+		<parameter property="keyWord" javaType="string"/>
+		<parameter property="pageBean" javaType="PageBean"/>
+	</parameterMap>
+	<resultMap type="RentedHouse" id="houseResultMap">
+		<id property="houseId" column="rent_id"/>
+		<result property="houseTitle" column="rent_title"/>
+		<result property="houseDesc" column="rent_desc"/>
+		<result property="houseAddr" column="rent_addr"/>
+		<result property="houseDate" column="rent_date"/>
+		
+		<association property="publisher" javaType="User">
+			<result property="userNickname" column="user_nickname"/>
+		</association>
+		
+		<association property="type" javaType="Type">
+			<result property="typeName" column="type_name"/>
+		</association>
+	</resultMap>
+	
+	<select id="getRentedHouseRows" parameterMap="rentRowParamMap" resultType="int">
+		select
+			count(id)
+		FROM
+			rent
+		LEFT JOIN user ON user_id = rent_owner
+		LEFT JOIN types ON rent_type = types.type_id
+		<include refid="byQbc"/>
+	</select>
+	<parameterMap type="java.util.Map" id="rentRowParamMap">
+		<parameter property="type" javaType="Type"/>
+		<parameter property="keyWord" javaType="string"/>
+	</parameterMap>
+	
+	
+	<select id="getAllRentType" resultMap="AllNewsRentResultMap">
+		select type_id,type_name from types t inner join functions f on t.func_id = f.func_id where f.func_id = 3
+	</select>
+	<!-- 字段映射 -->
+	<resultMap type="Type" id="AllNewsRentResultMap">
+		<id property="typeId" column="type_id"/>
+		<result property="typeName" column="type_name"/>
+	</resultMap>
+	
+	<insert id="" parameterType="Letter" useGeneratedKeys="true" keyProperty="letterId">
+		insert letters (letter_title,letter_desc,letter_publisher,user_recipient,letter_func,letter_date) 
+		value (#{letterTitle},#{letterDesc},#{publisher},#{recipient},#{func.funcId},#{letterDate})
+	</insert>
+	
+	<insert id="addRentHouse" parameterType="RentedHouse">
+		insert rent (rent_id,rent_title,rent_desc,rent_addr,rent_owner,rent_date,rent_type)
+		value (#{houseId},#{houseTitle},#{houseDesc},#{houseAddr},#{publisher},#{houseDate},#{type.typeId})
+	</insert>
+	
+</mapper>

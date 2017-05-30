@@ -66,5 +66,26 @@ public interface NewsService {
 	 * @return
 	 * @throws Exception
 	 */
-	int addComment(Comment comment) throws Exception;
+	int addComment(Comment<News> comment) throws Exception;
+	
+	/**
+	 * 管理员添加新闻
+	 * @param news
+	 * @return
+	 * @throws Exception
+	 */
+	int addNews(News news) throws Exception;
+	
+	/**
+	 * 删除评论
+	 * @param comment
+	 * @return
+	 * @throws Exception
+	 */
+	int deleteComment(Comment<News> comment) throws Exception;
+	
+	/**
+	 * 管理员删除新闻
+	 */
+	int deleteNews(News news) throws Exception;
 }

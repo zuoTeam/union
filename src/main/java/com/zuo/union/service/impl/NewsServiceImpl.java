@@ -13,7 +13,6 @@ import com.zuo.union.domain.Comment;
 import com.zuo.union.domain.News;
 import com.zuo.union.domain.PageBean;
 import com.zuo.union.domain.Type;
-import com.zuo.union.domain.User;
 import com.zuo.union.mapper.NewsMapper;
 import com.zuo.union.service.NewsService;
 
@@ -64,8 +63,23 @@ public class NewsServiceImpl implements NewsService{
 	}
 
 	@Override
-	public int addComment(Comment comment) throws Exception {
+	public int addComment(Comment<News> comment) throws Exception {
 		return newsMapper.addComment(comment);
+	}
+
+	@Override
+	public int addNews(News news) throws Exception {
+		return newsMapper.addNews(news);
+	}
+
+	@Override
+	public int deleteComment(Comment<News> comment) throws Exception {
+		return newsMapper.deleteComment(comment);
+	}
+
+	@Override
+	public int deleteNews(News news) throws Exception {
+		return newsMapper.deleteNews(news);
 	}
 
 

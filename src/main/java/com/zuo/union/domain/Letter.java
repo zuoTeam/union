@@ -1,6 +1,7 @@
 package com.zuo.union.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 站内信实体类
@@ -23,6 +24,8 @@ public class Letter implements Serializable{
 	private User recipient;
 //	来自某个功能模块
 	private Functions func;
+//	发送日期
+	private Date letterDate;
 	
 	public Letter() {
 
@@ -78,6 +81,14 @@ public class Letter implements Serializable{
 
 	public void setFunc(Functions func) {
 		this.func = func;
+	}
+
+	public Date getLetterDate() {
+		return letterDate;
+	}
+
+	public void setLetterDate(Date letterDate) {
+		this.letterDate = letterDate;
 	}
 	
 }

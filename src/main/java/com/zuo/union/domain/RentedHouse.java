@@ -24,6 +24,8 @@ public class RentedHouse implements Serializable{
 	private Date houseDate;
 //	发布人
 	private User publisher;
+//	出租房的类型
+	private Type type;
 	
 	public RentedHouse() {
 
@@ -75,6 +77,14 @@ public class RentedHouse implements Serializable{
 
 	public void setPublisher(User publisher) {
 		this.publisher = publisher;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
 	}
 	
 }

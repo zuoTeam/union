@@ -67,6 +67,7 @@
 		<parameter property="pageBean" javaType="PageBean"/>
 	</parameterMap>
 	
+	<!-- qbc获取新闻 -->
 	<select id="getNews" parameterMap="byQbc" resultMap="AllNewsResultMap">
 		SELECT
 			news_id,
@@ -100,6 +101,7 @@
 		</where>
 	</sql>
 	
+	<!-- qbc获取新闻的条目数 -->
 	<select id="getNewsRowCount" parameterMap="byConditions" resultType="int">
 		SELECT
 			count(news_id)
@@ -114,11 +116,30 @@
 		<parameter property="keyWord" javaType="string"/>
 	</parameterMap>
 	
+	<!-- 添加评论 -->
 	<insert id="addComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
 		insert 
 			comment (comment_content,comment_func_id,func_item_id,comment_user)
 		 value 
-		 	(#{commentContent},#{function.funcId},#{comment.e.*Id},#{user.userId})
+		 	(#{commentContent},#{function.funcId},#{e.newsId},#{user.userId})
 	</insert>
+	
+	<!-- 添加新闻 -->
+	<insert id="addNews" parameterType="News" useGeneratedKeys="true" keyProperty="commentId">
+		insert
+			news (news_title,news_desc,news_author,news_date,news_type)
+		value
+			(#{newsTitle},#{newsDesc},#{publisher.userId},#{newsDate},#{type.typeId})
+	</insert>
+	
+	<!-- 删除评论 -->
+	<delete id="deleteComment" parameterType="Comment">
+		delete from comment where comment_id = #{commentId}
+	</delete>
+	
+	<!-- 删除新闻 -->
+	<delete id="deleteNews" parameterType="News">
+		delete from news where news_id = #{newsId}
+	</delete>
 	
 </mapper>

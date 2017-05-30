@@ -21,6 +21,7 @@ public class Comment<E> implements Serializable {
 	private Functions function;
 	
 	/*评论的类别（类是变化的，统一定义成父类Object）*/
+	/*private Object object;*/
 	private E e;
 	
 	/*发布评论的用户*/
