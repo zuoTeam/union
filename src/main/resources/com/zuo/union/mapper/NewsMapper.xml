@@ -114,4 +114,11 @@
 		<parameter property="keyWord" javaType="string"/>
 	</parameterMap>
 	
+	<insert id="addComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
+		insert 
+			comment (comment_content,comment_func_id,func_item_id,comment_user)
+		 value 
+		 	(#{commentContent},#{function.funcId},#{comment.e.*Id},#{user.userId})
+	</insert>
+	
 </mapper>

@@ -57,8 +57,8 @@ public class NewsController {
 			modelAndView.setViewName("user/news");
 			if (allNewsType.size() > 0) {
 				// 如果新闻条目数大于0，则传对应的新闻到页面
-				return modelAndView.addObject("allNewsType", allNewsType).addObject("News", news).addObject("totalPage",
-						pageBean.getTotalPage());
+				return modelAndView.addObject("allNewsType", allNewsType).addObject("News", news).addObject("pageBean",
+						pageBean);
 			} else {
 				// 否则页面显示没有更多的新闻
 				return modelAndView.addObject("errorMessage", "No More Types");

@@ -12,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.zuo.union.domain.Comment;
+import com.zuo.union.domain.Functions;
 import com.zuo.union.domain.News;
 import com.zuo.union.domain.PageBean;
 import com.zuo.union.domain.Type;
+import com.zuo.union.domain.User;
 import com.zuo.union.mapper.NewsMapper;
 import com.zuo.union.service.NewsService;
 
@@ -96,6 +99,28 @@ public class NewsTest {
 		
 		int newsPageCount = newsServiceImpl.getNewsRowCount(keyWord, type);
 		System.out.println(newsPageCount);
+	}
+	
+	@Test
+	public void addComment() throws Exception {
+		User user = new User();
+		user.setUserId(1l);
+		
+		Functions functions = new Functions();
+		functions.setFuncId(2);
+		
+		News news = new News();
+		news.setNewsId(1);
+		
+		Comment<News> comment = new Comment<>();
+		comment.setCommentContent("testtest");
+		comment.setFunction(functions);
+		comment.setUser(user);
+		
+		int addComment = newsServiceImpl.addComment(comment);
+//		System.out.println(addComment);
+		
+		System.out.println(comment.getE());
 	}
 
 }

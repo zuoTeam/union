@@ -1,8 +1,8 @@
 package com.zuo.union.service;
 
 import java.util.List;
-import java.util.Map;
 
+import com.zuo.union.domain.Comment;
 import com.zuo.union.domain.News;
 import com.zuo.union.domain.PageBean;
 import com.zuo.union.domain.Type;
@@ -59,4 +59,12 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	int getNewsRowCount(String keyWord, Type type) throws Exception;
+	
+	/**
+	 * 评论
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	int addComment(Comment comment) throws Exception;
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.zuo.union.domain.Comment;
 import com.zuo.union.domain.News;
 import com.zuo.union.domain.PageBean;
 import com.zuo.union.domain.Type;
@@ -56,5 +57,13 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	int getNewsRowCount(Map<String, Object> map) throws Exception;
+	
+	/**
+	 * 评论
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	int addComment(Comment comment) throws Exception;
 
 }

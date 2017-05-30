@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Yao
  *
  */
-public class Comment implements Serializable {
+public class Comment<E> implements Serializable {
 
 	private static final long serialVersionUID = 1840904312726534077L;
 	
@@ -21,7 +21,10 @@ public class Comment implements Serializable {
 	private Functions function;
 	
 	/*评论的类别（类是变化的，统一定义成父类Object）*/
-	private Object object;
+	private E e;
+	
+	/*发布评论的用户*/
+	private User user;
 
 	public Integer getCommentId() {
 		return commentId;
@@ -47,12 +50,28 @@ public class Comment implements Serializable {
 		this.function = function;
 	}
 
-	public Object getObject() {
+	/*public Object getObject() {
 		return object;
 	}
 
 	public void setObject(Object object) {
 		this.object = object;
+	}*/
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public E getE() {
+		return e;
+	}
+
+	public void setE(E e) {
+		this.e = e;
 	}
 	
 	

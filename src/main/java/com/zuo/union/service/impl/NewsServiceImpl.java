@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zuo.union.domain.Comment;
 import com.zuo.union.domain.News;
 import com.zuo.union.domain.PageBean;
 import com.zuo.union.domain.Type;
+import com.zuo.union.domain.User;
 import com.zuo.union.mapper.NewsMapper;
 import com.zuo.union.service.NewsService;
 
@@ -59,6 +61,11 @@ public class NewsServiceImpl implements NewsService{
 		map.put("type", type);
 		map.put("keyWord", keyWord);
 		return newsMapper.getNewsRowCount(map);
+	}
+
+	@Override
+	public int addComment(Comment comment) throws Exception {
+		return newsMapper.addComment(comment);
 	}
 
 

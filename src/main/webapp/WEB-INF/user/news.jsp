@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>社区新闻</title>
 <link rel="stylesheet" href="Css/news.css">
+<script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>
+<script type="text/javascript" src="js/news.js"></script>
 </head>
 <body>
 	<div id="title">
@@ -22,11 +24,12 @@
 		<font color="red">${errorMessage }</font>
 		<ul>
 			<c:forEach items="${allNewsType}" var="type">
-				<li><a href="#">${type.typeName }</a></li>
+				<li><a href="javascript:void(0);">${type.typeName }</a></li>
 			</c:forEach>
 		</ul>
+		<a href="javascript:void(0);" id="test" data="57">test</a>
 	</div>
-	<div id="body">
+	<div id="contectBox">
 		<div id="border"></div>
 		<div id="newsWindow">
 			<ul>
@@ -37,10 +40,17 @@
 		</div>
 		<div id="pages">
 			<ul>
-				<c:forEach var="page" begin="1" end="${totalPage }">
-					<li>${page }</li>
-				</c:forEach>
+				<li><a>首页</a></li>
+				<li><a>上一页</a></li>
+				<li><a>下一页</a></li>
+				<li><a>尾页</a></li>
 			</ul>
+			<label>跳转至：</label>
+			<select>
+				<c:forEach var="page" begin="1" end="${pageBean.totalPage }">
+					<option>${page }</option>
+				</c:forEach>
+			</select>
 		</div>
 	</div>
 </body>
