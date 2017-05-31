@@ -50,7 +50,7 @@
 	
 	<select id="getRentedHouseRows" parameterMap="rentRowParamMap" resultType="int">
 		select
-			count(id)
+			count(rent_id)
 		FROM
 			rent
 		LEFT JOIN user ON user_id = rent_owner
@@ -63,23 +63,23 @@
 	</parameterMap>
 	
 	
-	<select id="getAllRentType" resultMap="AllNewsRentResultMap">
+	<select id="getAllRentType" resultMap="AllRentTypeResultMap">
 		select type_id,type_name from types t inner join functions f on t.func_id = f.func_id where f.func_id = 3
 	</select>
 	<!-- 字段映射 -->
-	<resultMap type="Type" id="AllNewsRentResultMap">
+	<resultMap type="Type" id="AllRentTypeResultMap">
 		<id property="typeId" column="type_id"/>
 		<result property="typeName" column="type_name"/>
 	</resultMap>
 	
-	<insert id="" parameterType="Letter" useGeneratedKeys="true" keyProperty="letterId">
-		insert letters (letter_title,letter_desc,letter_publisher,user_recipient,letter_func,letter_date) 
-		value (#{letterTitle},#{letterDesc},#{publisher},#{recipient},#{func.funcId},#{letterDate})
+	<insert id="addLetter" parameterType="Letter" useGeneratedKeys="true" keyProperty="letterId">
+		insert letters (letter_title,letter_desc,letter_publisher,letter_recipient,letter_func,letter_date) 
+		value (#{letterTitle},#{letterDesc},#{publisher.userId},#{recipient.userId},#{func.funcId},#{letterDate})
 	</insert>
 	
 	<insert id="addRentHouse" parameterType="RentedHouse">
 		insert rent (rent_id,rent_title,rent_desc,rent_addr,rent_owner,rent_date,rent_type)
-		value (#{houseId},#{houseTitle},#{houseDesc},#{houseAddr},#{publisher},#{houseDate},#{type.typeId})
+		value (#{houseId},#{houseTitle},#{houseDesc},#{houseAddr},#{publisher.userId},#{houseDate},#{type.typeId})
 	</insert>
 	
 </mapper>

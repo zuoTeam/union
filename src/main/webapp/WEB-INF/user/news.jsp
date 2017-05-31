@@ -29,7 +29,7 @@
 		</ul>
 		<a href="javascript:void(0);" id="test" data="57">test</a>
 	</div>
-	<div id="contectBox">
+	<div id="contentBox">
 		<div id="border"></div>
 		<div id="newsWindow">
 			<ul>
